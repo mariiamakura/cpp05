@@ -29,8 +29,6 @@ Bureaucrat::~Bureaucrat() {
 //member functions
 
 int Bureaucrat::getGrade() const {
-	//if >150
-	//or  < 0
 	return (this->_grade);
 }
 
@@ -45,6 +43,10 @@ void Bureaucrat::decrementGrade() {
 } 
 
 void Bureaucrat::setGrade(int grade) {
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	this->_grade = grade;
 }
 
@@ -55,4 +57,14 @@ const std::string Bureaucrat::getName() const {
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &src) {
 	o << "(ostream overload) Beraucrat " << src.getName() << " with grade " << src.getGrade() << std::endl;
 	return (o);
+}
+
+//exceptions
+
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Grade too high");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Grade too low");
 }

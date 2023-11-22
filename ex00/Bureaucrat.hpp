@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <exception>
 
 class Bureaucrat {
 
@@ -26,6 +27,15 @@ class Bureaucrat {
 		void decrementGrade();
 
 		//exceptions
+		class GradeTooHighException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 };
 
 std::ostream &operator<<(std::ostream &o, const Bureaucrat &src);

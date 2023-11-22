@@ -18,7 +18,7 @@ $(NAME): $(OBJS) $(SRCS)
 	c++ $(FLAGS) $(OBJS) -o $(NAME)
 
 clean: 
-	rm -rf OBJS
+	rm -rf obj
 
 fclean: clean
 	rm -f $(NAME)
