@@ -44,6 +44,12 @@ int main()
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
 
+	//b sign the form by b class
+	b_one.signForm(two);
+
+	//try to sign one more time ERROR within b class
+	b_one.signForm(two);
+
 	//stream overload
 	std::cout << one;
 	std::cout << two;

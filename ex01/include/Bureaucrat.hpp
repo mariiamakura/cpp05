@@ -4,6 +4,8 @@
 #include <exception>
 #include "Form.hpp"
 
+class Form;
+
 class Bureaucrat {
 
 	private:
@@ -25,7 +27,7 @@ class Bureaucrat {
 		int getGrade() const;
 
 		//ADDED for EX01
-		//void signForm(Form &form) const;
+		void signForm(Form &form) const;
 
 		void incrementGrade();
 		void decrementGrade();

@@ -68,3 +68,16 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade too low");
 }
+
+//ex01
+
+void Bureaucrat::signForm(Form &form) const {
+	try {
+		form.beSigned(*this);
+		std::cout << "Bureaucrat " << this->getName() << " signed the form "
+			<< form.getName() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << RED << "Bureaucrat " << this->getName() << " couldn't sing the form "
+			<< form.getName()  << " coz " << e.what() << RESET << std::endl;
+	}
+}

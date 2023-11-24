@@ -43,7 +43,7 @@ bool Form::isSigned() const {
 	return (this->_isSigned);
 }
 
-void Form::beSigned(Bureaucrat &bureaucrat) {
+void Form::beSigned(const Bureaucrat &bureaucrat) {
 	if (this->_isSigned == true)
 		throw Form::AlreadySigned();
 	else if (this->getGradeToSign() < bureaucrat.getGrade())
