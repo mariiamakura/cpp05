@@ -33,12 +33,6 @@ std::ostream &operator<<(std::ostream &o, const ShrubberyCreationForm &src) {
 }
 
 void ShrubberyCreationForm::createForm() const {
-/* 	try {
-		this.execute(&executor);
-	} catch (std::exception &e) {
-		RED << e.what() << RESET << std::endl;
-	} */
-
 	// Create an ofstream (output file stream) object
 	std::ofstream file; 
 	file.open((this->getTarget() + "_shrubbery").c_str());
