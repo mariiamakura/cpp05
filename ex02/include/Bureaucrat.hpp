@@ -29,6 +29,9 @@ class Bureaucrat {
 		//ADDED for EX01
 		void signAForm(AForm &AForm) const;
 
+		//ADDEDfor EX02
+		void executeForm(AForm const &form);
+
 		void incrementGrade();
 		void decrementGrade();
 

@@ -9,7 +9,7 @@
 class Bureaucrat;
 
 class AForm {
-	private:
+	protected:
 		const std::string _name;
 		bool _isSigned; //by default FALSE
 		const int _gradeToSign;
@@ -21,7 +21,7 @@ class AForm {
 		AForm(const AForm &src);
 		AForm &operator=(const AForm &src);
 
-		~AForm();
+		virtual ~AForm();
 
 		const std::string &getName() const;
 		bool isSigned() const;
@@ -30,6 +30,10 @@ class AForm {
 		//void increaseGrade(); to test const int 
 		void beSigned(const Bureaucrat &bureaucrat); 
 		void checkGrade(const int grade);
+
+		//pure virtual for abstract class
+		virtual void createForm() const = 0;
+		void execute(Bureaucrat const &executor) const;
 
 		class GradeTooHighException: public std::exception {
 			public:
@@ -45,6 +49,11 @@ class AForm {
 			public:
 				virtual const char *what() const throw();
 		}; 
+
+		class FormNotSigned: public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 };
 
 std::ostream &operator<<(std::ostream &o, AForm &src);

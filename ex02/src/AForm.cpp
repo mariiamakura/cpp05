@@ -6,25 +6,25 @@ AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExe
 		checkGrade(gradeToSign);
 		checkGrade(gradeToExec);
 		this->_isSigned = false;
-		std::cout << "### From " << getName() << " created" << std::endl;
+		std::cout << "### AFrom " << getName() << " created" << std::endl;
 }
 
 AForm::AForm(const AForm &src) : _name(src._name), _gradeToSign(src._gradeToSign),
 	_gradeToExec(src._gradeToExec) {
 	this->_isSigned = src._isSigned;
 
-	std::cout << "### From COPY " << getName() << " created" << std::endl;
+	std::cout << "### AFrom COPY " << getName() << " created" << std::endl;
 }
 
 AForm& AForm::operator=(const AForm &src) {
 	if (this != &src)
 		this->_isSigned = src._isSigned;
-	std::cout << "### From =OPERATOR called" << std::endl;
+	std::cout << "### AFrom =OPERATOR called" << std::endl;
 	return (*this);
 }
 
 AForm::~AForm() {
-	std::cout << "### From " << getName() << " destroyed" << std::endl;
+	std::cout << "### AFrom " << getName() << " destroyed" << std::endl;
 }
 
 const std::string &AForm::getName() const {
@@ -77,8 +77,19 @@ std::ostream &operator<<(std::ostream &o, AForm &src) {
 	return (o);
 }
 
-
-
-// void AForm::increaseGrade() { //to test const int
+//to test const int
+// void AForm::increaseGrade() {
 // 	this->_gradeToExec += 1;
 // }
+
+void AForm::execute(Bureaucrat const &executor) const {
+	if (this->getGradeToExec() < executor.getGrade())
+		throw(Bureaucrat::GradeTooLowException());
+	else if (this->isSigned() == false)
+		throw(AForm::FormNotSigned());
+	createForm();
+}
+
+const char *AForm::FormNotSigned::what() const throw() {
+	return ("### AForm not signed");
+}

@@ -81,3 +81,7 @@ void Bureaucrat::signAForm(AForm &AForm) const {
 			<< AForm.getName()  << " coz " << e.what() << RESET << std::endl;
 	}
 }
+
+/* void Beraucrat::executeForm(const AForm &src) {
+
+} */
